@@ -20,13 +20,6 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
 
          }
 
-         if ($_GET['action'] == "delete") {
-
-           $controller = new personas_controller();
-           $controller->delete();
-
-         }
-
     }
 
 } else {

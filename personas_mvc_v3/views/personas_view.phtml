@@ -7,8 +7,7 @@
     <body>
         <?php
             foreach ($datos as $dato) {
-                echo "{$dato['nombre']} tiene {$dato['edad']} años." .
-                     "<a href=\"index.php?controller=personas&action=delete&id={$dato['id']}\">Borrar</a><br/>";
+                echo "{$dato['nombre']} tiene {$dato['edad']} años.<br/>";
             }
         ?>
         <br>

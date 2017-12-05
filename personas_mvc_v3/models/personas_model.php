@@ -16,7 +16,7 @@ class personas_model{
     }
 
     public function insertar($nombre, $edad) {
-         $sql = "INSERT INTO personas (nombre, edad) VALUES ('$nombre','$edad')";
+         $sql = "INSERT INTO pexxxxxxxxxxxxrsonas (nombre, edad) VALUES ('$nombre','$edad')";
          $result = $this->db->query($sql);
 
          if ($this->db->error)
@@ -24,18 +24,6 @@ class personas_model{
          else {
              return false;
          }
-    }
-
-    public function delete($id) {
-        $sql = "DELETE FROM personas WHERE id='$id'";
-
-        $result = $this->db->query($sql);
-
-        if ($this->db->error)
-            return "$sql<br>{$this->db->error}";
-        else {
-            return false;
-        }
     }
 }
 ?>
