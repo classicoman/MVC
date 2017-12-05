@@ -7,16 +7,15 @@ class personas_controller {
 
       /* Muestra pantalla de altas */
       function add() {
-
         require_once("views/personas_add.phtml");
       }
 
       /* Muestra listado de personas */
       function view() {
-        $per=new personas_model();
+        $persona=new personas_model();
 
         //Uso metodo del modelo de personas
-        $datos=$per->get_personas();
+        $datos=$persona->get_personas();
 
         //Llamado a la vista: mostrar la pantalla
         require_once("views/personas_view.phtml");
@@ -24,13 +23,13 @@ class personas_controller {
 
 
       function insert() {
-          $per=new personas_model();
+          $persona=new personas_model();
 
           if (isset($_POST['insert'])) {
-              $nombre = $_POST['nombre'];
-              $edad   = $_POST['edad'];
+              $persona->setNombre( $_POST['nombre'] );
+              $persona->setEdad( $_POST['edad'] );
 
-              $error = $per->insertar($nombre, $edad);
+              $error = $persona->insertar();
 
               if (!$error) {
                   header( "Location: index.php");
@@ -44,11 +43,11 @@ class personas_controller {
 
       function delete() {
         if (isset($_GET['id'])) {
-          $per=new personas_model();
+          $persona=new personas_model();
 
           $id = $_GET['id'];
 
-          $error = $per->delete($id);
+          $error = $persona->delete($id);
 
           if (!$error) {
               header( "Location: index.php");

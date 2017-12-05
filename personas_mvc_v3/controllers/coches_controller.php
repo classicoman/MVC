@@ -7,7 +7,6 @@ class coches_controller {
 
       /* Muestra pantalla de altas */
       function add() {
-
         require_once("views/coches_add.phtml");
       }
 
@@ -24,16 +23,17 @@ class coches_controller {
 
 
       function insert() {
-          $coche=new coches_model();
+          $coche = new coches_model();
 
           if (isset($_POST['insert'])) {
-              $nombre = $_POST['nombre'];
-              $edad   = $_POST['edad'];
+              $coche->setMarca ($_POST['marca']);
+              $coche->setModelo ($_POST['modelo']);
+              $coche->setFabricado ($_POST['fabricado']);
 
-              $error = $coche->insertar($nombre, $edad);
+              $error = $coche->insertar();
 
               if (!$error) {
-                  header( "Location: index.php");
+                  header( "Location: index.php?controller=coches&action=view");
               }
               else {
                   echo $error;
@@ -51,7 +51,7 @@ class coches_controller {
           $error = $coche->delete($id);
 
           if (!$error) {
-              header( "Location: index.php");
+            header( "Location: index.php?controller=coches&action=view");
           }
           else {
               echo $error;
