@@ -5,70 +5,89 @@ require_once("models/coches_model.php");
 
 class coches_controller {
 
-      /* Muestra pantalla de altas */
-      function add() {
-        require_once("views/coches_add.phtml");
-      }
-
-      /* Muestra listado de coches */
-      function view() {
-        $coche=new coches_model();
-
-        //Uso metodo del modelo de coches
-        $datos=$coche->get_coches();
-
-        //Llamado a la vista: mostrar la pantalla
-        require_once("views/coches_view.phtml");
-      }
+  /**
+   * Muestra pantalla 'add'
+   * @return No
+   */
+  function add() {
+    require_once("views/coches_add.phtml");
+  }
 
 
-      function insert() {
-          $coche = new coches_model();
+/**
+ * Mostra llistat
+ * @return No
+ */
+  function view() {
+    $coche=new coches_model();
 
-          if (isset($_POST['insert'])) {
-              $coche->setMarca ($_POST['marca']);
-              $coche->setModelo ($_POST['modelo']);
-              $coche->setFabricado ($_POST['fabricado']);
+    //Uso metodo del modelo de coches
+    $datos=$coche->get_coches();
 
-              $error = $coche->insertar();
+    //Llamado a la vista: mostrar la pantalla
+    require_once("views/coches_view.phtml");
+  }
 
-              if (!$error) {
-                  header( "Location: index.php?controller=coches&action=view");
-              }
-              else {
-                  echo $error;
-              }
-          }
 
-      }
+/**
+ * Inserta a la taula
+ * @return No
+ */
+  function insert() {
+      $coche = new coches_model();
 
-      function delete() {
-        if (isset($_GET['id'])) {
-          $coche=new coches_model();
+      if (isset($_POST['insert'])) {
+          $coche->setMarca ($_POST['marca']);
+          $coche->setModelo ($_POST['modelo']);
+          $coche->setFabricado ($_POST['fabricado']);
 
-          $id = $_GET['id'];
-
-          $error = $coche->delete($id);
+          $error = $coche->insertar();
 
           if (!$error) {
-            header( "Location: index.php?controller=coches&action=view");
+              header( "Location: index.php?controller=coches&action=view");
           }
           else {
               echo $error;
           }
-        }
       }
+  }
 
 
-      function ordmarca() {
-        $coche=new coches_model();
+/**
+ * Elimina una fila de la taula
+ * @return No
+ */
+  function delete() {
+    if (isset($_GET['id'])) {
+      $coche=new coches_model();
 
-        //Uso metodo del modelo de coches
-        $datos=$coche->ordmarca();
+      $id = $_GET['id'];
 
-        //Llamado a la vista: mostrar la pantalla
-        require_once("views/coches_view.phtml");
+      $error = $coche->delete($id);
+
+      if (!$error) {
+        header( "Location: index.php?controller=coches&action=view");
       }
+      else {
+          echo $error;
+      }
+    }
+  }
+
+
+/**
+ * Mostra els cotxes ordenats per marca
+ * @return No
+ */
+  function ordmarca() {
+    $coche=new coches_model();
+
+    //Uso metodo del modelo de coches
+    $datos=$coche->ordmarca();
+
+    //Llamado a la vista: mostrar la pantalla
+    require_once("views/coches_view.phtml");
+  }
 
 }
 ?>

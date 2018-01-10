@@ -8,6 +8,11 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
 
     if ($_GET['controller'] == "personas") {
 
+         if ($_GET['action'] == "view") {
+           $controller = new personas_controller();
+           $controller->view();
+         }
+
          if ($_GET['action'] == "add") {
            $controller = new personas_controller();
            $controller->add();
