@@ -2,7 +2,7 @@
 
 /* Acció i controlador per defecte */
 define('CONTROLADOR_DEFECTO', "personas");
-define('ACCION_DEFECTO', "view");
+define('ACCION_DEFECTO', "listado");
 
 function cargarControlador($controller){
   $controlador = $controller.'_controller';

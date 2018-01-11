@@ -3,14 +3,18 @@
 require_once("models/personas_model.php");
 
 
-class personas_controller {
+class personas_controller extends ControladorBase {
 
 /**
  * Muestra pantalla 'add'
  * @return No
  */
 function add() {
-  require_once("views/personas_add.phtml");
+
+  //Cargamos la vista
+        $this->view("personas_add.phtml", array(
+        ));
+  //require_once("views/personas_add.phtml");
 }
 
 
@@ -18,14 +22,18 @@ function add() {
  * Mostra llistat
  * @return No
  */
-function view() {
+function listado() {
   $persona=new personas_model();
 
   //Uso metodo del modelo de personas
-  $datos=$persona->get_personas();
+  $datos  = $persona->get_personas();
+  $titulo = "Listado de Personas";
 
-  //Llamado a la vista: mostrar la pantalla
-  require_once("views/personas_view.phtml");
+  $this->view("personas_listado.phtml",array(
+              "datos"                 => $datos,
+              "Listado de Personas"   => $titulo
+      ));
+  //require_once("views/personas_listado.phtml");
 }
 
 

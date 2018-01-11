@@ -3,14 +3,19 @@
 require_once("models/coches_model.php");
 
 
-class coches_controller {
+class coches_controller extends ControladorBase {
 
   /**
    * Muestra pantalla 'add'
    * @return No
    */
   function add() {
-    require_once("views/coches_add.phtml");
+
+    //Cargar vista
+     $this->view("coches_add.phtml", array(
+      ));
+
+    //  require_once("views/coches_add.phtml");
   }
 
 
@@ -18,14 +23,17 @@ class coches_controller {
  * Mostra llistat
  * @return No
  */
-  function view() {
+  function listado() {
     $coche=new coches_model();
+    $titulo = "Listado de Coches";
 
-    //Uso metodo del modelo de coches
-    $datos=$coche->get_coches();
-
-    //Llamado a la vista: mostrar la pantalla
-    require_once("views/coches_view.phtml");
+    $datos = $coche->get_coches();
+    //Cargar vista
+    $this->view("coches_listado.phtml",array(
+                "datos"                 => $datos,
+                "Listado de Personas"   => $titulo
+        ));
+    //require_once("views/coches_listado.phtml");
   }
 
 
@@ -44,7 +52,7 @@ class coches_controller {
           $error = $coche->insertar();
 
           if (!$error) {
-              header( "Location: index.php?controller=coches&action=view");
+              header( "Location: index.php?controller=coches&action=listado");
           }
           else {
               echo $error;
@@ -66,7 +74,7 @@ class coches_controller {
       $error = $coche->delete($id);
 
       if (!$error) {
-        header( "Location: index.php?controller=coches&action=view");
+        header( "Location: index.php?controller=coches&action=listado");
       }
       else {
           echo $error;
@@ -84,10 +92,14 @@ class coches_controller {
 
     //Uso metodo del modelo de coches
     $datos=$coche->ordmarca();
+    $titulo = "Listado de Coches ordenado";
 
-    //Llamado a la vista: mostrar la pantalla
-    require_once("views/coches_view.phtml");
+    //Cargar vista
+    $this->view("coches_listado.phtml",array(
+                "datos"                 => $datos,
+                "Listado de Personas"   => $titulo
+        ));
+    //require_once("views/coches_listado.phtml");  }
   }
-
 }
 ?>
