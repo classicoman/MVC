@@ -25,13 +25,9 @@ function add() {
 function listado() {
   $persona=new personas_model();
 
-  //Uso metodo del modelo de personas
-  $datos  = $persona->get_personas();
-  $titulo = "Listado de Personas";
-
   $this->view("personas_listado.phtml",array(
-              "listapersonas"    => $datos,
-              "titulo"   => "Listado de Personas"
+              "ps"     => $persona->get_personas(),
+              "titulo" => "Listado de Personas"
       ));
   //require_once("views/personas_listado.phtml");
 }
