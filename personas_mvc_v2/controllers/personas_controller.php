@@ -56,13 +56,14 @@ function insert() {
  */
 function delete() {
   if (isset($_GET['id'])) {
-    $per=new personas_model();
 
     $id = $_GET['id'];
 
-    $error = $per->delete($id);
+    $personas = new personas_model();
 
-    if (!$error) {
+    $error = $personas->delete($id);
+
+    if ($error === false) {
       header( "Location: index.php");
     }
     else {

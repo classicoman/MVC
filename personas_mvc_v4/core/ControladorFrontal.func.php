@@ -9,7 +9,8 @@ function cargarControlador($controller){
   $strFileController='controllers/'.$controlador.'.php';
 
   if(!is_file($strFileController)){
-    $strFileController='/controller/'.CONTROLADOR_DEFECTO.'_controller.php';
+    $controlador = CONTROLADOR_DEFECTO.'_controller';
+    $strFileController='controllers/'.CONTROLADOR_DEFECTO.'_controller.php';
   }
 
   require_once $strFileController;

@@ -37,6 +37,7 @@ function insert() {
     $persona=new personas_model();
 
     if (isset($_POST['insert'])) {
+
         $persona->setNombre( $_POST['nombre'] );
         $persona->setEdad( $_POST['edad'] );
 
