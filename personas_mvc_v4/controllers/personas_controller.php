@@ -30,8 +30,8 @@ function listado() {
   $titulo = "Listado de Personas";
 
   $this->view("personas_listado.phtml",array(
-              "datos"                 => $datos,
-              "Listado de Personas"   => $titulo
+              "listapersonas"    => $datos,
+              "titulo"   => "Listado de Personas"
       ));
   //require_once("views/personas_listado.phtml");
 }

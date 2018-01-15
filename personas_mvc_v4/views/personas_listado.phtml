@@ -5,11 +5,11 @@
         <title><?php echo $titulo ?></title>
     </head>
     <body>
-      <h1>PERSONAS</h1>
+      <h1><?php echo $titulo ?></h1>
         <?php
-            foreach ($datos as $dato) {
-                echo "{$dato['nombre']} tiene {$dato['edad']} años." .
-                     "<a href=\"index.php?controller=personas&action=delete&id={$dato['id']}\">Borrar</a><br/>";
+            foreach ($listapersonas as $datospersona) {
+                echo "{$datospersona['nombre']} tiene {$datospersona['edad']} años." .
+                     "<a href=\"index.php?controller=personas&action=delete&id={$datospersona['id']}\">Borrar</a><br/>";
             }
         ?>
         <p><a href="index.php?controller=personas&action=add">Alta de Personas</a></p>
